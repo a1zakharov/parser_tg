@@ -4,14 +4,13 @@ from pprint import pprint
 
 file = open('read.txt', 'w', encoding="utf-8")
 
-link = input('link: ') #https://t.me/markettwits
-index = link[13:]
-link_channel = requests.get('https://t.me/s/' + index)
+link_channel = requests.get(input('link: '))  # https://t.me/s/...
 html = bs(link_channel.text, 'html.parser')
 
 massages = html.find_all('div', class_='tgme_widget_message_text js-message_text')
 times = html.find_all('time', class_='time')
 pprint(massages)
+
 
 def tg_times():
     for time in times:
